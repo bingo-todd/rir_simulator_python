@@ -488,9 +488,9 @@ class RoomSim(object):
 
         # Further constants
         room_size_double = 2*self.room_size
-        room_size_double[0] = 2*self.room_size[0] # Twice Length (Depth)
-        room_size_double[1] = 2*self.room_size[1] # Twice Width
-        room_size_double[2] = 2*self.room_size[2] # Twice Height
+        Two_Lx = 2*self.room_size[0] # Twice Length (Depth)
+        Two_Ly = 2*self.room_size[1] # Twice Width
+        Two_Lz = 2*self.room_size[2] # Twice Height
         #codes the eight permutations of x+/-xp, y+/-yp, z+/-zp
         #(the source to receiver vector components) where [-1 -1 -1] identifies the parent source.
         img_src_ident = np.array([[-1, -1, -1],
@@ -527,13 +527,13 @@ class RoomSim(object):
 
         for i_x in np.arange(-order_x, order_x+1):
             atten_bx2 = bx2**np.abs(i_x)
-            pos_x = i_x*room_size_double[0]
+            pos_x = i_x*Two_Lx
             for i_y in np.arange(-order_y, order_y):
                 atten_bx2y2 = atten_bx2*(by2**np.abs(i_y))
                 pos_y = i_y*Two_l_Ly
                 for i_z in np.arange(-order_z, order_z+1):
                     atten_bx2y2z2 = atten_bx2y2*(bz2**np.abs(i_z))
-                    pos_z = i_z*room_size_double[2]
+                    pos_z = i_z*Two_Lz
                     pos_tmp = np.asarray([pos_x, pos_y, pos_z])
                     for permu in np.arange(8):
                         n_image = n_image+1
